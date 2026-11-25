@@ -12,6 +12,7 @@ import { starfishDef } from "trazo/catalog/ocean";
 import type { StickerDef } from "trazo/core";
 import { Sticker } from "trazo/scribble";
 
+import { BackgroundPicker } from "@/components/trazo/background-picker";
 import { AkoderMark, GitHubLogo } from "@/components/trazo/icons";
 import { useTrazo } from "@/components/trazo/trazo-experience";
 import {
@@ -401,8 +402,9 @@ export function TopBar({ stars }: { stars: number | null }) {
         initial={enterFrom}
         animate={enterTo}
         transition={reduceMotion ? { duration: 0 } : { ...enterSpring, delay: 0.22 }}
-        className={reduceEntrance}
+        className={cn(reduceEntrance, "flex items-center gap-1.5 sm:gap-2")}
       >
+        <BackgroundPicker />
         <GitHubStarBadge stars={stars} />
       </motion.div>
     </header>

@@ -16,6 +16,7 @@ import { findStickerMeta, trazoCatalogMeta } from "trazo/meta";
 import { findCanvasPlacement } from "@/config/canvas";
 import { type PaletteId } from "@/config/palette";
 import { playLocateShakeSound } from "@/lib/sound";
+import { useCanvasBackground } from "@/lib/use-canvas-background";
 import {
   loadAllCategories,
   loadStickerById,
@@ -110,6 +111,7 @@ const TrazoContext = createContext<TrazoContextValue | null>(null);
 
 export function TrazoProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const backgroundId = useCanvasBackground();
 
   const [paletteId, setPaletteId] = useState<PaletteId>("mix");
   const [overlay, setOverlay] = useState<OverlayState>(() => parseOverlayRoute(pathname));
@@ -128,6 +130,10 @@ export function TrazoProvider({ children }: { children: ReactNode }) {
 
   const overlayOpen = overlay.open;
   const overlayView = overlay.view;
+
+  useEffect(() => {
+    document.documentElement.dataset.bg = backgroundId;
+  }, [backgroundId]);
 
   const selectedStickerMeta = useMemo(
     () => findStickerMeta(overlay.stickerId) ?? trazoCatalogMeta[0],

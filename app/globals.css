@@ -82,6 +82,46 @@
   --radius: 0.5rem;
 }
 
+:root[data-bg="dark"] {
+  color-scheme: dark;
+  --scribble-paper: #181715;
+  --scribble-ink: #f4f4f5;
+  --background: #181715;
+  --foreground: #f4f4f5;
+  --card: #232220;
+  --card-foreground: #f4f4f5;
+  --popover: #232220;
+  --popover-foreground: #f4f4f5;
+  --secondary: #2c2b29;
+  --secondary-foreground: #f4f4f5;
+  --muted: #2c2b29;
+  --muted-foreground: #a5a29c;
+  --accent: #2c2b29;
+  --accent-foreground: #f4f4f5;
+  --border: #3a3835;
+  --input: #3a3835;
+  --ring: #a5a29c;
+}
+
+:root[data-bg="cream"] {
+  --background: #fff7e8;
+  --scribble-paper: #fff7e8;
+}
+
+:root[data-bg="rose"] {
+  --background: #fff1f2;
+  --scribble-paper: #fff1f2;
+}
+
+:root[data-bg="mint"] {
+  --background: #f0fdf4;
+  --scribble-paper: #f0fdf4;
+}
+
+:root[data-bg="sky"] {
+  --background: #f0f9ff;
+  --scribble-paper: #f0f9ff;
+}
 
 @layer base {
   * {

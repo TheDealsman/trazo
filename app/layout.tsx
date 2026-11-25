@@ -4,9 +4,13 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { BACKGROUND_STORAGE_KEY, backgroundOptions } from "@/config/background";
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import "./globals.css";
+
+const backgroundIds = backgroundOptions.map((option) => option.id);
+const backgroundBootstrap = `(function(){try{var v=localStorage.getItem("${BACKGROUND_STORAGE_KEY}");if(v&&${JSON.stringify(backgroundIds)}.indexOf(v)>-1)document.documentElement.dataset.bg=v}catch(e){}})();`;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -104,6 +108,7 @@ export default function RootLayout({
       )}
     >
       <body className="antialiased">
+        <script dangerouslySetInnerHTML={{ __html: backgroundBootstrap }} />
         <TooltipProvider>{children}</TooltipProvider>
         <Script
           defer
